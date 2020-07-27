@@ -13,7 +13,7 @@ First half decent dpcpp port of the miniAMR app. This was after realizing some m
 
 Overall Execution:
 
-'''
+```
 for some number of timesteps do
     for some number of stages do
         communicate ghost values between blocks
@@ -29,7 +29,7 @@ for some number of timesteps do
         refine mesh
     end if
 end for
-'''
+```
 
 Stencil Execution:
 
