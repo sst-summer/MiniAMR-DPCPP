@@ -65,13 +65,15 @@ Overall Execution:
 for some number of timesteps do
     for some number of stages do
         communicate ghost values between blocks
-        perform stencil calculation on variables
-        if stage for checksums then
-            for some number of variables
+        for some number of variables
+            perform stencil calculation on variables
+        end for
+        for some number of variables
+            if stage for checksums then
                 perform checksum calculations
                 compare checksum values
-            end for
-        end if
+            end if
+        end for
     end for
     if time for refinement then
         refine mesh
