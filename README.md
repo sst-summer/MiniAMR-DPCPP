@@ -81,8 +81,8 @@ end for
 Stencil Execution:
 ```
 for some number of blocks
-        create buffer using bp->array
-        send buffer to fpga kernel
+    create buffer using bp->array
+    send buffer to fpga kernel
 end for
 ```
 Kernel Execution:
