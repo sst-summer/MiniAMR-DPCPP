@@ -1,0 +1,202 @@
+
+########################################################################
+#      Date:           Tue Jul 14 13:56:25 PDT 2020
+#    Job ID:           647871.v-qsvr-1.aidevcloud
+#      User:           u43053
+# Resources:           neednodes=1:fpga_runtime:ppn=2,nodes=1:fpga_runtime:ppn=2,walltime=06:00:00
+########################################################################
+
+:: setvars has already been run. Skipping any further invocation.  To force its re-execution, pass --force
+WARNING: release_mt library was used but no multi-ep feature was enabled. Please use release library instead.
+Init dirs x 
+Number of blocks at level 0 at timestep 0 is 1
+Number of blocks at level 1 at timestep 0 is 0
+Number of blocks at level 2 at timestep 0 is 0
+Number of blocks at level 3 at timestep 0 is 0
+Number of blocks at level 4 at timestep 0 is 0
+Number of blocks at level 5 at timestep 0 is 0
+Total number of blocks at timestep 0 is 1
+comm partners x ave   0.00 min 0 max 0
+comm partners y ave   0.00 min 0 max 0
+comm partners z ave   0.00 min 0 max 0
+comm partners total ave   0.00 min 0 max 0
+comm partners unique ave   0.00 min 0 max 0
+
+Timestep 1 time 0.000000 delta 1.000000
+Buffer:0.47459375858306885 -- Block:0.47459378838539124
+WARNING: release_mt library was used but no multi-ep feature was enabled. Please use release library instead.
+Init dirs x 
+Number of blocks at level 0 at timestep 0 is 1
+Number of blocks at level 1 at timestep 0 is 0
+Number of blocks at level 2 at timestep 0 is 0
+Number of blocks at level 3 at timestep 0 is 0
+Number of blocks at level 4 at timestep 0 is 0
+Number of blocks at level 5 at timestep 0 is 0
+Total number of blocks at timestep 0 is 1
+comm partners x ave   0.00 min 0 max 0
+comm partners y ave   0.00 min 0 max 0
+comm partners z ave   0.00 min 0 max 0
+comm partners total ave   0.00 min 0 max 0
+comm partners unique ave   0.00 min 0 max 0
+
+Timestep 1 time 0.000000 delta 1.000000
+Buffer:0.38089311122894287 -- Block:0.38089314103126526
+WARNING: release_mt library was used but no multi-ep feature was enabled. Please use release library instead.
+Init dirs x 
+Number of blocks at level 0 at timestep 0 is 1
+Number of blocks at level 1 at timestep 0 is 0
+Number of blocks at level 2 at timestep 0 is 0
+Number of blocks at level 3 at timestep 0 is 0
+Number of blocks at level 4 at timestep 0 is 0
+Number of blocks at level 5 at timestep 0 is 0
+Total number of blocks at timestep 0 is 1
+comm partners x ave   0.00 min 0 max 0
+comm partners y ave   0.00 min 0 max 0
+comm partners z ave   0.00 min 0 max 0
+comm partners total ave   0.00 min 0 max 0
+comm partners unique ave   0.00 min 0 max 0
+
+Timestep 1 time 0.000000 delta 1.000000
+Buffer:0.31875622272491455 -- Block:0.31875625252723694
+WARNING: release_mt library was used but no multi-ep feature was enabled. Please use release library instead.
+Init dirs x 
+Number of blocks at level 0 at timestep 0 is 1
+Number of blocks at level 1 at timestep 0 is 0
+Number of blocks at level 2 at timestep 0 is 0
+Number of blocks at level 3 at timestep 0 is 0
+Number of blocks at level 4 at timestep 0 is 0
+Number of blocks at level 5 at timestep 0 is 0
+Total number of blocks at timestep 0 is 1
+comm partners x ave   0.00 min 0 max 0
+comm partners y ave   0.00 min 0 max 0
+comm partners z ave   0.00 min 0 max 0
+comm partners total ave   0.00 min 0 max 0
+comm partners unique ave   0.00 min 0 max 0
+
+Timestep 1 time 0.000000 delta 1.000000
+Buffer:0.37640964984893799 -- Block:0.37640967965126038
+WARNING: release_mt library was used but no multi-ep feature was enabled. Please use release library instead.
+Init dirs x 
+Number of blocks at level 0 at timestep 0 is 1
+Number of blocks at level 1 at timestep 0 is 0
+Number of blocks at level 2 at timestep 0 is 0
+Number of blocks at level 3 at timestep 0 is 0
+Number of blocks at level 4 at timestep 0 is 0
+Number of blocks at level 5 at timestep 0 is 0
+Total number of blocks at timestep 0 is 1
+comm partners x ave   0.00 min 0 max 0
+comm partners y ave   0.00 min 0 max 0
+comm partners z ave   0.00 min 0 max 0
+comm partners total ave   0.00 min 0 max 0
+comm partners unique ave   0.00 min 0 max 0
+
+Timestep 1 time 0.000000 delta 1.000000
+Buffer:0.40134346485137939 -- Block:0.40134349465370178
+WARNING: release_mt library was used but no multi-ep feature was enabled. Please use release library instead.
+Init dirs x 
+Number of blocks at level 0 at timestep 0 is 1
+Number of blocks at level 1 at timestep 0 is 0
+Number of blocks at level 2 at timestep 0 is 0
+Number of blocks at level 3 at timestep 0 is 0
+Number of blocks at level 4 at timestep 0 is 0
+Number of blocks at level 5 at timestep 0 is 0
+Total number of blocks at timestep 0 is 1
+comm partners x ave   0.00 min 0 max 0
+comm partners y ave   0.00 min 0 max 0
+comm partners z ave   0.00 min 0 max 0
+comm partners total ave   0.00 min 0 max 0
+comm partners unique ave   0.00 min 0 max 0
+
+Timestep 1 time 0.000000 delta 1.000000
+Buffer:0.65420937538146973 -- Block:0.65420943498611450
+WARNING: release_mt library was used but no multi-ep feature was enabled. Please use release library instead.
+Init dirs x 
+Number of blocks at level 0 at timestep 0 is 1
+Number of blocks at level 1 at timestep 0 is 0
+Number of blocks at level 2 at timestep 0 is 0
+Number of blocks at level 3 at timestep 0 is 0
+Number of blocks at level 4 at timestep 0 is 0
+Number of blocks at level 5 at timestep 0 is 0
+Total number of blocks at timestep 0 is 1
+comm partners x ave   0.00 min 0 max 0
+comm partners y ave   0.00 min 0 max 0
+comm partners z ave   0.00 min 0 max 0
+comm partners total ave   0.00 min 0 max 0
+comm partners unique ave   0.00 min 0 max 0
+
+Timestep 1 time 0.000000 delta 1.000000
+Buffer:0.57582592964172363 -- Block:0.57582598924636841
+WARNING: release_mt library was used but no multi-ep feature was enabled. Please use release library instead.
+Init dirs x 
+Number of blocks at level 0 at timestep 0 is 1
+Number of blocks at level 1 at timestep 0 is 0
+Number of blocks at level 2 at timestep 0 is 0
+Number of blocks at level 3 at timestep 0 is 0
+Number of blocks at level 4 at timestep 0 is 0
+Number of blocks at level 5 at timestep 0 is 0
+Total number of blocks at timestep 0 is 1
+comm partners x ave   0.00 min 0 max 0
+comm partners y ave   0.00 min 0 max 0
+comm partners z ave   0.00 min 0 max 0
+comm partners total ave   0.00 min 0 max 0
+comm partners unique ave   0.00 min 0 max 0
+
+Timestep 1 time 0.000000 delta 1.000000
+Buffer:0.49325001239776611 -- Block:0.49325004220008850
+WARNING: release_mt library was used but no multi-ep feature was enabled. Please use release library instead.
+Init dirs x 
+Number of blocks at level 0 at timestep 0 is 1
+Number of blocks at level 1 at timestep 0 is 0
+Number of blocks at level 2 at timestep 0 is 0
+Number of blocks at level 3 at timestep 0 is 0
+Number of blocks at level 4 at timestep 0 is 0
+Number of blocks at level 5 at timestep 0 is 0
+Total number of blocks at timestep 0 is 1
+comm partners x ave   0.00 min 0 max 0
+comm partners y ave   0.00 min 0 max 0
+comm partners z ave   0.00 min 0 max 0
+comm partners total ave   0.00 min 0 max 0
+comm partners unique ave   0.00 min 0 max 0
+
+Timestep 1 time 0.000000 delta 1.000000
+Buffer:0.60272955894470215 -- Block:0.60272961854934692
+WARNING: release_mt library was used but no multi-ep feature was enabled. Please use release library instead.
+Init dirs x 
+Number of blocks at level 0 at timestep 0 is 1
+Number of blocks at level 1 at timestep 0 is 0
+Number of blocks at level 2 at timestep 0 is 0
+Number of blocks at level 3 at timestep 0 is 0
+Number of blocks at level 4 at timestep 0 is 0
+Number of blocks at level 5 at timestep 0 is 0
+Total number of blocks at timestep 0 is 1
+comm partners x ave   0.00 min 0 max 0
+comm partners y ave   0.00 min 0 max 0
+comm partners z ave   0.00 min 0 max 0
+comm partners total ave   0.00 min 0 max 0
+comm partners unique ave   0.00 min 0 max 0
+
+Timestep 1 time 0.000000 delta 1.000000
+Buffer:0.31413662433624268 -- Block:0.31413665413856506
+WARNING: release_mt library was used but no multi-ep feature was enabled. Please use release library instead.
+Init dirs x 
+Number of blocks at level 0 at timestep 0 is 1
+Number of blocks at level 1 at timestep 0 is 0
+Number of blocks at level 2 at timestep 0 is 0
+Number of blocks at level 3 at timestep 0 is 0
+Number of blocks at level 4 at timestep 0 is 0
+Number of blocks at level 5 at timestep 0 is 0
+Total number of blocks at timestep 0 is 1
+comm partners x ave   0.00 min 0 max 0
+comm partners y ave   0.00 min 0 max 0
+comm partners z ave   0.00 min 0 max 0
+comm partners total ave   0.00 min 0 max 0
+comm partners unique ave   0.00 min 0 max 0
+
+Timestep 1 time 0.000000 delta 1.000000
+Buffer:0.57688260078430176 -- Block:0.57688266038894653
+
+########################################################################
+# End of output for job 647871.v-qsvr-1.aidevcloud
+# Date: Tue Jul 14 13:56:37 PDT 2020
+########################################################################
+

@@ -1,0 +1,15 @@
+
+########################################################################
+#      Date:           Thu Jul  2 05:56:02 PDT 2020
+#    Job ID:           642410.v-qsvr-1.aidevcloud
+#      User:           u43053
+# Resources:           neednodes=1:fpga_runtime:ppn=2,nodes=1:fpga_runtime:ppn=2,walltime=06:00:00
+########################################################################
+
+:: setvars has already been run. Skipping any further invocation.  To force its re-execution, pass --force
+
+########################################################################
+# End of output for job 642410.v-qsvr-1.aidevcloud
+# Date: Thu Jul  2 05:56:06 PDT 2020
+########################################################################
+
