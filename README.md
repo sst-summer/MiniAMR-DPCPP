@@ -65,9 +65,7 @@ Overall Execution:
 for some number of timesteps do
     for some number of stages do
         communicate ghost values between blocks
-        for some number of variables
-            perform stencil calculation on variables
-        end for
+        perform stencil calculation on variables
         for some number of variables
             if stage for checksums then
                 perform checksum calculations
@@ -83,8 +81,8 @@ end for
 Stencil Execution:
 ```
 for some number of blocks
-    create buffer using bp->array
-    send buffer to fpga kernel
+        create buffer using bp->array
+        send buffer to fpga kernel
 end for
 ```
 Kernel Execution:
