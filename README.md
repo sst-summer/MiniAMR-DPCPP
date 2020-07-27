@@ -4,7 +4,7 @@ A port of the Mantevo MiniAMR mini-app using DPCPP.
 Description of folders in no particular order
 
 For original see: https://github.com/Mantevo/miniAMR \
-Overall execution sudo-code from: \
+Overall execution pseudocode from: \
 C. T. Vaughan and R. F. Barrett, "Enabling Tractable Exploration of the Performance of Adaptive Mesh Refinement," 2015 IEEE International Conference on Cluster Computing, Chicago, IL, 2015, pp. 746-752, doi: 10.1109/CLUSTER.2015.129.
 
 ### dpcpp
