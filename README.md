@@ -12,7 +12,7 @@ C. T. Vaughan and R. F. Barrett, "Enabling Tractable Exploration of the Performa
 First half decent dpcpp port of the miniAMR app. This was after realizing some major flaws in prior executions and this is what all other tests draw their lineage from.
 
 Overall Execution:
-
+'''
 for some number of timesteps do
     for some number of stages do
         communicate ghost values between blocks
@@ -28,7 +28,7 @@ for some number of timesteps do
         refine mesh
     end if
 end for
-
+'''
 Stencil Execution:
 
 for some number of blocks
