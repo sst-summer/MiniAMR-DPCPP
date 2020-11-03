@@ -27,7 +27,7 @@
 #include <mpi.h>
 #include <math.h>
 #include <CL/sycl.hpp>
-#include <CL/sycl/intel/fpga_extensions.hpp>
+#include <CL/sycl/INTEL/fpga_extensions.hpp>
 
 #include "block.h"
 #include "comm.h"
@@ -291,7 +291,7 @@ void stencil_0(int var)
                   bp->array[var][i][j][k] += bp->array[var][i][j][k] *
                   (bp->array[0][i][j][k] +
                      bp->array[1][i][j][k] -
-                     beta * bp->array[var][i][j][k]);
+                     beta_arg * bp->array[var][i][j][k]);
       }
       total_fp_adds += (double)3 * num_active * num_cells;
       total_fp_muls += (double)2 * num_active * num_cells;
@@ -305,8 +305,8 @@ void stencil_0(int var)
                   bp->array[var][i][j][k] = bp->array[var][i][j][k] *
                   (bp->array[0][i][j][k] +
                      bp->array[var][i][j][k] +
-                     beta * bp->array[var + mat][i][j][k] +
-                     (1.0 - beta) * bp->array[var + 2 * mat][i][j][k]) /
+                     beta_arg * bp->array[var + mat][i][j][k] +
+                     (1.0 - beta_arg) * bp->array[var + 2 * mat][i][j][k]) /
                   bp->array[1][i][j][k];
       }
       total_fp_adds += (double)3 * num_active * num_cells;
@@ -320,9 +320,9 @@ void stencil_0(int var)
             for (j = 1; j <= y_block_size; j++)
                for (k = 1; k <= z_block_size; k++)
                   bp->array[var][i][j][k] += bp->array[var - mat][i][j][k] *
-                  (beta * bp->array[0][i][j][k] +
+                  (beta_arg * bp->array[0][i][j][k] +
                      alpha[var - 2 * mat] * bp->array[var][i][j][k] +
-                     (1.0 - beta) * bp->array[var + mat][i][j][k]) /
+                     (1.0 - beta_arg) * bp->array[var + mat][i][j][k]) /
                   bp->array[1][i][j][k];
       }
       total_fp_adds += (double)4 * num_active * num_cells;
@@ -336,10 +336,10 @@ void stencil_0(int var)
             for (j = 1; j <= y_block_size; j++)
                for (k = 1; k <= z_block_size; k++)
                   bp->array[var][i][j][k] += bp->array[var - 2 * mat][i][j][k] *
-                  (beta * bp->array[0][i][j][k] +
+                  (beta_arg * bp->array[0][i][j][k] +
                      alpha[var - 3 * mat] * bp->array[var][i][j][k] +
                      (1.0 - alpha[var - 3 * mat]) * bp->array[var - mat][i][j][k] +
-                     (1.0 - beta) * bp->array[var - 2 * mat][i][j][k]) /
+                     (1.0 - beta_arg) * bp->array[var - 2 * mat][i][j][k]) /
                   (bp->array[1][i][j][k] *
                      bp->array[1][i][j][k]);
       }
@@ -364,7 +364,7 @@ void stencil_x(int var)
                   for (v = 2; v < mat + 2; v++)
                      bp->array[1][i][j][k] += bp->array[v][i][j][k] *
                      bp->array[0][i][j][k];
-                  bp->array[1][i][j][k] /= (beta + bp->array[1][i][j][k]);
+                  bp->array[1][i][j][k] /= (beta_arg + bp->array[1][i][j][k]);
                }
       }
       total_fp_adds += (double)(mat + 1) * num_active * num_cells;
@@ -380,7 +380,7 @@ void stencil_x(int var)
                   bp->array[var][i][j][k] += bp->array[var][i][j][k] *
                   (bp->array[0][i][j][k] +
                      bp->array[1][i][j][k] -
-                     beta * bp->array[var][i][j][k]) /
+                     beta_arg * bp->array[var][i][j][k]) /
                   (alpha[var] + bp->array[1][i][j][k]);
       }
       total_fp_adds += (double)4 * num_active * num_cells;
@@ -401,7 +401,7 @@ void stencil_x(int var)
                         (tmp1 - tmp2) * (bp->array[var][i][j][k] +
                            bp->array[1][i][j][k]) +
                         tmp2 * bp->array[var][i + 1][j][k]) /
-                     (beta + alpha[var - mat] +
+                     (beta_arg + alpha[var - mat] +
                         bp->array[var][i - 1][j][k] +
                         bp->array[var][i][j][k] +
                         bp->array[var][i + 1][j][k] +
@@ -412,7 +412,7 @@ void stencil_x(int var)
                         (tmp2 - tmp1) * (bp->array[var][i][j][k] +
                            bp->array[1][i][j][k]) +
                         tmp2 * bp->array[var][i + 1][j][k]) /
-                     (beta + alpha[var - mat] +
+                     (beta_arg + alpha[var - mat] +
                         bp->array[var][i - 1][j][k] +
                         bp->array[var][i][j][k] +
                         bp->array[var][i + 1][j][k] +
@@ -437,7 +437,7 @@ void stencil_x(int var)
                         (tmp1 - tmp2) * (bp->array[var][i][j][k] +
                            bp->array[1][i][j][k]) +
                         tmp2 * bp->array[var][i + 1][j][k]) /
-                     (beta + alpha[var - 2 * mat] +
+                     (beta_arg + alpha[var - 2 * mat] +
                         bp->array[var - mat][i][j][k] +
                         bp->array[var + mat][i][j][k] +
                         bp->array[var][i - 1][j][k] +
@@ -448,7 +448,7 @@ void stencil_x(int var)
                         (tmp2 - tmp1) * (bp->array[var][i][j][k] +
                            bp->array[1][i][j][k]) +
                         tmp2 * bp->array[var][i + 1][j][k]) /
-                     (beta + alpha[var - 2 * mat] +
+                     (beta_arg + alpha[var - 2 * mat] +
                         bp->array[var - mat][i][j][k] +
                         bp->array[var + mat][i][j][k] +
                         bp->array[var][i - 1][j][k] +
@@ -473,7 +473,7 @@ void stencil_x(int var)
                         (tmp1 - tmp2) * (bp->array[var][i][j][k] +
                            bp->array[1][i][j][k]) +
                         tmp2 * bp->array[var][i + 1][j][k]) /
-                     (beta + alpha[var - 3 * mat] +
+                     (beta_arg + alpha[var - 3 * mat] +
                         bp->array[var - mat][i][j][k] +
                         bp->array[var - 2 * mat][i][j][k] +
                         bp->array[var][i - 1][j][k] +
@@ -484,7 +484,7 @@ void stencil_x(int var)
                         (tmp2 - tmp1) * (bp->array[var][i][j][k] +
                            bp->array[1][i][j][k]) +
                         tmp2 * bp->array[var][i + 1][j][k]) /
-                     (beta + alpha[var - 3 * mat] +
+                     (beta_arg + alpha[var - 3 * mat] +
                         bp->array[var - mat][i][j][k] +
                         bp->array[var - 2 * mat][i][j][k] +
                         bp->array[var][i - 1][j][k] +
@@ -512,7 +512,7 @@ void stencil_y(int var)
                   for (v = 2; v < mat + 2; v++)
                      bp->array[1][i][j][k] += bp->array[v][i][j][k] *
                      bp->array[0][i][j][k];
-                  bp->array[1][i][j][k] /= (beta + bp->array[1][i][j][k]);
+                  bp->array[1][i][j][k] /= (beta_arg + bp->array[1][i][j][k]);
                }
       }
       total_fp_adds += (double)(mat + 1) * num_active * num_cells;
@@ -528,7 +528,7 @@ void stencil_y(int var)
                   bp->array[var][i][j][k] += bp->array[var][i][j][k] *
                   (bp->array[0][i][j][k] +
                      bp->array[1][i][j][k] -
-                     beta * bp->array[var][i][j][k]) /
+                     beta_arg * bp->array[var][i][j][k]) /
                   (alpha[var] + bp->array[1][i][j][k]);
       }
       total_fp_adds += (double)4 * num_active * num_cells;
@@ -549,7 +549,7 @@ void stencil_y(int var)
                         (tmp1 - tmp2) * (bp->array[var][i][j][k] +
                            bp->array[1][i][j][k]) +
                         tmp2 * bp->array[var][i][j + 1][k]) /
-                     (beta + alpha[var - mat] +
+                     (beta_arg + alpha[var - mat] +
                         bp->array[var][i][j - 1][k] +
                         bp->array[var][i][j][k] +
                         bp->array[var][i][j + 1][k] +
@@ -560,7 +560,7 @@ void stencil_y(int var)
                         (tmp2 - tmp1) * (bp->array[var][i][j][k] +
                            bp->array[1][i][j][k]) +
                         tmp2 * bp->array[var][i][j + 1][k]) /
-                     (beta + alpha[var - mat] +
+                     (beta_arg + alpha[var - mat] +
                         bp->array[var][i][j - 1][k] +
                         bp->array[var][i][j][k] +
                         bp->array[var][i][j + 1][k] +
@@ -585,7 +585,7 @@ void stencil_y(int var)
                         (tmp1 - tmp2) * (bp->array[var][i][j][k] +
                            bp->array[1][i][j][k]) +
                         tmp2 * bp->array[var][i][j + 1][k]) /
-                     (beta + alpha[var - 2 * mat] +
+                     (beta_arg + alpha[var - 2 * mat] +
                         bp->array[var - mat][i][j][k] +
                         bp->array[var + mat][i][j][k] +
                         bp->array[var][i][j - 1][k] +
@@ -596,7 +596,7 @@ void stencil_y(int var)
                         (tmp2 - tmp1) * (bp->array[var][i][j][k] +
                            bp->array[1][i][j][k]) +
                         tmp2 * bp->array[var][i][j + 1][k]) /
-                     (beta + alpha[var - 2 * mat] +
+                     (beta_arg + alpha[var - 2 * mat] +
                         bp->array[var - mat][i][j][k] +
                         bp->array[var + mat][i][j][k] +
                         bp->array[var][i][j - 1][k] +
@@ -621,7 +621,7 @@ void stencil_y(int var)
                         (tmp1 - tmp2) * (bp->array[var][i][j][k] +
                            bp->array[1][i][j][k]) +
                         tmp2 * bp->array[var][i][j + 1][k]) /
-                     (beta + alpha[var - 3 * mat] +
+                     (beta_arg + alpha[var - 3 * mat] +
                         bp->array[var - mat][i][j][k] +
                         bp->array[var - 2 * mat][i][j][k] +
                         bp->array[var][i][j - 1][k] +
@@ -632,7 +632,7 @@ void stencil_y(int var)
                         (tmp2 - tmp1) * (bp->array[var][i][j][k] +
                            bp->array[1][i][j][k]) +
                         tmp2 * bp->array[var][i][j + 1][k]) /
-                     (beta + alpha[var - 3 * mat] +
+                     (beta_arg + alpha[var - 3 * mat] +
                         bp->array[var - mat][i][j][k] +
                         bp->array[var - 2 * mat][i][j][k] +
                         bp->array[var][i][j - 1][k] +
@@ -661,7 +661,7 @@ void stencil_z(int var)
                   for (v = 2; v < mat + 2; v++)
                      bp->array[1][i][j][k] += bp->array[v][i][j][k] *
                      bp->array[0][i][j][k];
-                  bp->array[1][i][j][k] /= (beta + bp->array[1][i][j][k]);
+                  bp->array[1][i][j][k] /= (beta_arg + bp->array[1][i][j][k]);
                }
       }
       total_fp_adds += (double)(mat + 1) * num_active * num_cells;
@@ -677,7 +677,7 @@ void stencil_z(int var)
                   bp->array[var][i][j][k] += bp->array[var][i][j][k] *
                   (bp->array[0][i][j][k] +
                      bp->array[1][i][j][k] -
-                     beta * bp->array[var][i][j][k]) /
+                     beta_arg * bp->array[var][i][j][k]) /
                   (alpha[var] + bp->array[1][i][j][k]);
       }
       total_fp_adds += (double)4 * num_active * num_cells;
@@ -698,7 +698,7 @@ void stencil_z(int var)
                         (tmp1 - tmp2) * (bp->array[var][i][j][k] +
                            bp->array[1][i][j][k]) +
                         tmp2 * bp->array[var][i][j][k + 1]) /
-                     (beta + alpha[var - mat] +
+                     (beta_arg + alpha[var - mat] +
                         bp->array[var][i][j][k - 1] +
                         bp->array[var][i][j][k] +
                         bp->array[var][i][j][k + 1] +
@@ -709,7 +709,7 @@ void stencil_z(int var)
                         (tmp2 - tmp1) * (bp->array[var][i][j][k] +
                            bp->array[1][i][j][k]) +
                         tmp2 * bp->array[var][i][j][k + 1]) /
-                     (beta + alpha[var - mat] +
+                     (beta_arg + alpha[var - mat] +
                         bp->array[var][i][j][k - 1] +
                         bp->array[var][i][j][k] +
                         bp->array[var][i][j][k + 1] +
@@ -734,7 +734,7 @@ void stencil_z(int var)
                         (tmp1 - tmp2) * (bp->array[var][i][j][k] +
                            bp->array[1][i][j][k]) +
                         tmp2 * bp->array[var][i][j][k + 1]) /
-                     (beta + alpha[var - 2 * mat] +
+                     (beta_arg + alpha[var - 2 * mat] +
                         bp->array[var - mat][i][j][k] +
                         bp->array[var + mat][i][j][k] +
                         bp->array[var][i][j][k - 1] +
@@ -745,7 +745,7 @@ void stencil_z(int var)
                         (tmp2 - tmp1) * (bp->array[var][i][j][k] +
                            bp->array[1][i][j][k]) +
                         tmp2 * bp->array[var][i][j][k + 1]) /
-                     (beta + alpha[var - 2 * mat] +
+                     (beta_arg + alpha[var - 2 * mat] +
                         bp->array[var - mat][i][j][k] +
                         bp->array[var + mat][i][j][k] +
                         bp->array[var][i][j][k - 1] +
@@ -770,7 +770,7 @@ void stencil_z(int var)
                         (tmp1 - tmp2) * (bp->array[var][i][j][k] +
                            bp->array[1][i][j][k]) +
                         tmp2 * bp->array[var][i][j][k + 1]) /
-                     (beta + alpha[var - 3 * mat] +
+                     (beta_arg + alpha[var - 3 * mat] +
                         bp->array[var - mat][i][j][k] +
                         bp->array[var - 2 * mat][i][j][k] +
                         bp->array[var][i][j][k - 1] +
@@ -781,7 +781,7 @@ void stencil_z(int var)
                         (tmp2 - tmp1) * (bp->array[var][i][j][k] +
                            bp->array[1][i][j][k]) +
                         tmp2 * bp->array[var][i][j][k + 1]) /
-                     (beta + alpha[var - 3 * mat] +
+                     (beta_arg + alpha[var - 3 * mat] +
                         bp->array[var - mat][i][j][k] +
                         bp->array[var - 2 * mat][i][j][k] +
                         bp->array[var][i][j][k - 1] +
@@ -820,7 +820,7 @@ void stencil_7(int var)
                      bp->array[var + 2 * mat][i][j + 1][k] +
                      bp->array[var][i + 1][j][k] *
                      bp->array[var + mat][i + 1][j][k]) /
-                  7.0 * (beta + bp->array[var][i][j][k]);
+                  7.0 * (beta_arg + bp->array[var][i][j][k]);
          for (i = 1; i <= x_block_size; i++)
             for (j = 1; j <= y_block_size; j++)
                for (k = 1; k <= z_block_size; k++)
@@ -850,7 +850,7 @@ void stencil_7(int var)
                      bp->array[var + 2 * mat][i][j + 1][k] +
                      bp->array[var][i + 1][j][k] *
                      bp->array[var + mat][i + 1][j][k]) /
-                  7.0 * (beta + bp->array[var][i][j][k]);
+                  7.0 * (beta_arg + bp->array[var][i][j][k]);
          for (i = 1; i <= x_block_size; i++)
             for (j = 1; j <= y_block_size; j++)
                for (k = 1; k <= z_block_size; k++)
@@ -880,7 +880,7 @@ void stencil_7(int var)
                      bp->array[var - 2 * mat][i][j + 1][k] +
                      bp->array[var][i + 1][j][k] *
                      bp->array[var + mat][i + 1][j][k]) /
-                  7.0 * (beta + bp->array[var][i][j][k]);
+                  7.0 * (beta_arg + bp->array[var][i][j][k]);
          for (i = 1; i <= x_block_size; i++)
             for (j = 1; j <= y_block_size; j++)
                for (k = 1; k <= z_block_size; k++)
@@ -910,7 +910,7 @@ void stencil_7(int var)
                      bp->array[var - 2 * mat][i][j + 1][k] +
                      bp->array[var][i + 1][j][k] *
                      bp->array[var - 3 * mat][i + 1][j][k]) /
-                  7.0 * (beta + bp->array[var][i][j][k]);
+                  7.0 * (beta_arg + bp->array[var][i][j][k]);
          for (i = 1; i <= x_block_size; i++)
             for (j = 1; j <= y_block_size; j++)
                for (k = 1; k <= z_block_size; k++)
@@ -961,7 +961,7 @@ void stencil_27(int var)
                      bp->array[var + 3 * mat][i + 1][j + 1][k - 1] +
                      bp->array[var + 2 * mat][i + 1][j + 1][k] +
                      bp->array[var + 3 * mat][i + 1][j + 1][k + 1]) /
-                  (beta + 27.0);
+                  (beta_arg + 27.0);
          for (i = 1; i <= x_block_size; i++)
             for (j = 1; j <= y_block_size; j++)
                for (k = 1; k <= z_block_size; k++)
@@ -1003,7 +1003,7 @@ void stencil_27(int var)
                      bp->array[var - mat][i + 1][j + 1][k - 1] +
                      bp->array[var + 2 * mat][i + 1][j + 1][k] +
                      bp->array[var - mat][i + 1][j + 1][k + 1]) /
-                  (beta + 27.0);
+                  (beta_arg + 27.0);
          for (i = 1; i <= x_block_size; i++)
             for (j = 1; j <= y_block_size; j++)
                for (k = 1; k <= z_block_size; k++)
@@ -1045,7 +1045,7 @@ void stencil_27(int var)
                      bp->array[var - mat][i + 1][j + 1][k - 1] +
                      bp->array[var - 2 * mat][i + 1][j + 1][k] +
                      bp->array[var - mat][i + 1][j + 1][k + 1]) /
-                  (beta + 27.0);
+                  (beta_arg + 27.0);
          for (i = 1; i <= x_block_size; i++)
             for (j = 1; j <= y_block_size; j++)
                for (k = 1; k <= z_block_size; k++)
@@ -1087,7 +1087,7 @@ void stencil_27(int var)
                      bp->array[var - mat][i + 1][j + 1][k - 1] +
                      bp->array[var - 2 * mat][i + 1][j + 1][k] +
                      bp->array[var - mat][i + 1][j + 1][k + 1]) /
-                  (beta + 27.0);
+                  (beta_arg + 27.0);
          for (i = 1; i <= x_block_size; i++)
             for (j = 1; j <= y_block_size; j++)
                for (k = 1; k <= z_block_size; k++)
@@ -1111,13 +1111,13 @@ void stencil_check(int var)
             for (k = 1; k <= z_block_size; k++) {
                bp->array[var][i][j][k] = fabs(bp->array[var][i][j][k]);
                if (bp->array[var][i][j][k] >= 1.0) {
-                  bp->array[var][i][j][k] /= (beta + alpha[0] +
+                  bp->array[var][i][j][k] /= (beta_arg + alpha[0] +
                      bp->array[var][i][j][k]);
                   total_fp_divs += (double)1;
                   total_fp_adds += (double)2;
                }
                else if (bp->array[var][i][j][k] < 0.1) {
-                  bp->array[var][i][j][k] *= 10.0 - beta;
+                  bp->array[var][i][j][k] *= 10.0 - beta_arg;
                   total_fp_muls += (double)1;
                   total_fp_adds += (double)1;
                }

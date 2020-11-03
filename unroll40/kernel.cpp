@@ -27,7 +27,7 @@
 #include <mpi.h>
 #include <math.h>
 #include <CL/sycl.hpp>
-#include <CL/sycl/intel/fpga_extensions.hpp>
+#include <CL/sycl/INTEL/fpga_extensions.hpp>
 
 #include "block.h"
 #include "comm.h"
@@ -40,11 +40,11 @@ using namespace cl;
 //Device selection
 //We will explicitly compile for the FPGA_EMULATOR, CPU_HOST, or FPGA
 #if defined(FPGA_EMULATOR)
-   sycl::intel::fpga_emulator_selector device_selector;
+   sycl::INTEL::fpga_emulator_selector device_selector;
 #elif defined(CPU_HOST)
    sycl::host_selector device_selector;
 #else
-   sycl::intel::fpga_selector device_selector;
+   sycl::INTEL::fpga_selector device_selector;
 #endif
 
 //Create queue

@@ -186,7 +186,7 @@ void init(void)
 
    if (!stencil) {
       mat = num_vars/4;
-      beta = ((double) rand())/((double) RAND_MAX);
+      beta_arg = ((double) rand())/((double) RAND_MAX);
       for (i = 0; i < (num_vars/4); i++)
          alpha[i] = ((double) rand())/((double) RAND_MAX);
    }

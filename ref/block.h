@@ -129,7 +129,7 @@ int *from, *to;
 int msg_len[3][4];
 int local_max_b;
 int global_max_b;
-double *alpha, beta;
+double *alpha, beta_arg;
 double total_fp_divs;
 double total_fp_adds;
 double total_fp_muls;

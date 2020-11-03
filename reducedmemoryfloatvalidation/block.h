@@ -135,7 +135,7 @@ int *from __attribute__((weak)), *to __attribute__((weak));
 int msg_len[3][4] __attribute__((weak));
 int local_max_b __attribute__((weak));
 int global_max_b __attribute__((weak));
-double *alpha __attribute__((weak)), beta __attribute__((weak));
+double *alpha __attribute__((weak)), beta_arg __attribute__((weak));
 double total_fp_divs __attribute__((weak));
 double total_fp_adds __attribute__((weak));
 double total_fp_muls __attribute__((weak));

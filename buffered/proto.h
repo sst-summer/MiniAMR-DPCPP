@@ -29,7 +29,7 @@
 
 #include <stddef.h>
 #include <CL/sycl.hpp>
-#include <CL/sycl/intel/fpga_extensions.hpp>
+#include <CL/sycl/INTEL/fpga_extensions.hpp>
 
 using namespace cl;
 
